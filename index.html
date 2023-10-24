@@ -1,1 +1,61 @@
-<h1>Hello, World!</h1>
+<html lang ="en">
+
+<script lang="JavaScript">
+    function f(){
+        
+   
+        let number1TextInput = document.getElementById("number1").value;
+        let number2TextInput = document.getElementById("number2").value;
+
+        let paragraph2 = document.createElement("p");
+       
+        let arr =  Array();  
+        for(i = 0; i < number1TextInput; i++){
+            arr.push(Array());
+        }
+        var dx = 2;
+        var x = 1;
+        var borx = 1;
+        for(j = 0; j < number2TextInput; j++){
+            arr[0].push(x);
+            x += dx; 
+            dx++;
+        }
+
+        var dy = 0;
+        for(i = 1; i < number1TextInput; i++){
+            dy++;
+            var tmp = dy;
+            for(j = 0; j < number2TextInput - borx; j++){
+                arr[i][j] = arr[i - 1][j] + tmp;
+                tmp++;
+            }
+            for(j = number2TextInput-borx; j < number2TextInput; j++){
+                arr[i][j] = 0;
+            }
+            borx++;
+        }
+
+        let ans = Array();
+        for(i = 0; i < number1TextInput; i++){
+            ans.push(arr[i]);
+        }
+        for(i = 0; i < number1TextInput; i++){
+            paragraph2.innerHTML = paragraph2.innerHTML + ans[i].join(" ") + "<br>";
+        }
+        
+        document.body.append(
+            paragraph2
+        )
+}
+</script>
+
+    <form>
+        <input id = "number1" type="number">
+        <input id = "number2" type="number">
+    </form>
+    <body>
+        <button id = "Button1" onclick="f()">This is a button</button>
+    </body>
+
+</html>
